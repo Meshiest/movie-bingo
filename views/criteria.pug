@@ -1,11 +1,22 @@
 extend includes/layout.pug
 
+append scripts
+  script.
+    document.addEventListener('DOMContentLoaded', () => {
+      $('#newCriteria').focus();
+    });
+
 block content
   +card()
     header New Criteria
     form(method='post', action='/criteria')
       .button-field
-        input(type='text', name='name', placeholder='Criteria', autocomplete='off')
+        input(
+          id='newCriteria'
+          type='text'
+          name='name'
+          placeholder='Criteria'
+          autocomplete='off')
         button(type='submit') Add
 
   +card()
