@@ -288,3 +288,7 @@ button:disabled, form:invalid button {
   padding: 2px 4px;
   flex: 1;
 }
+
+pre {
+  white-space: pre-wrap;
+}
