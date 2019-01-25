@@ -7,20 +7,17 @@ const _ = require('lodash');
 
 const app = express();
 const port = process.env.PORT || 3000;
-const db = new loki('data.db', {
+const db = new loki('./bingo.db', {
   autosave: true,
 });
 
 const MOVIE_NAMESPACE = '82f3d365-44e5-4c9e-9d40-ebd2e43aa477';
 const CRITERIA_NAMESPACE = '5449a322-51b4-4199-b52a-08d86e868be1';
 
+const collection = name => db.getCollection(name) || db.addCollection(name);
+
 // Set of tables
-const table = {
-  criteria: db.addCollection('criteria'),
-  movies: db.addCollection('movies'),
-  matchingCriteria: db.addCollection('matching-criteria'),
-  boards: db.addCollection('boards'),
-};
+const table = {};
 
 function calcBingo(id) {
   // Create an object showing which criteria are selected for this movie
@@ -292,4 +289,11 @@ app.use((req, res) => {
     });
 });
 
-app.listen(port, () => console.log(`Started server on :${port}!`));
+db.loadDatabase({}, () => {
+  table.criteria = collection('criteria');
+  table.movies = collection('movies');
+  table.matchingCriteria = collection('matching-criteria');
+  table.boards = collection('boards');
+
+  app.listen(port, () => console.log(`Started server on :${port}!`));
+});
