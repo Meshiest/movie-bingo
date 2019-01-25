@@ -1,0 +1,14 @@
+mixin link(href, name)
+  li
+    if attributes.name === page.name
+      a(href=href, class="selected")= name
+    else
+      a(href=href)= name
+
+nav
+  .title Bingo
+  ul
+    +link('/', 'Home')(name='home')
+    +link('/movies/new', 'New Movie')(name='new movie')
+    +link('/movies', 'Movies')(name='movies')
+    +link('/criteria', 'Criteria')(name='criteria')

@@ -1,0 +1,12 @@
+extend includes/layout.pug
+
+block content
+  if movies.length === 0
+    +notice()
+      span No movies found. Please 
+      a(href='/movies/new') add
+      span  one.
+  else
+    +card()
+      for movie in movies
+        a(href=`/movies/${movie.id}`)= movie.title

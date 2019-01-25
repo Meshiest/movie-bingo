@@ -1,0 +1,31 @@
+extend includes/layout.pug
+
+block content
+  if criteria.length < 25
+    +notice()
+      span Not enough criteria. Please 
+      a(href='/criteria') add
+      span  at least 24.
+  else
+    +card()
+      form(method='post', action='/movies/new')
+        header New Movie
+        .button-field
+          input(type='text', name='title', autocomplete='off' placeholder='Movie Title', required)
+          button#submit(type='submit', disabled) Create
+        .progress-bar
+          #progressBar.progress-fg
+            .progress-content
+              span#criteriaCount 0
+              span /24
+        .criteria-list
+          each item in criteria
+            .criteria-item
+              input(
+                type='checkbox'
+                name=`criteria[]`
+                checked
+                value=item.id
+                onchange='selectCriteria(event)'
+                id=`criteria-${item.id}`)
+              label(for=`criteria-${item.id}`)= item.name

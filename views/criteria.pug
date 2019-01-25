@@ -1,0 +1,17 @@
+extend includes/layout.pug
+
+block content
+  +card()
+    header New Criteria
+    form(method='post', action='/criteria')
+      .button-field
+        input(type='text', name='name', placeholder='Criteria', autocomplete='off')
+        button(type='submit') Add
+
+  +card()
+    header= `Criteria (${criteria.length})`
+    each item in criteria
+      .criteria-list
+        form.criteria-list-item(method='post', action=`/criteria/${item.id}/delete`)
+          .criteria= item.name
+          button(type='submit') Delete

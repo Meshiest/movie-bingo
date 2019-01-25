@@ -1,0 +1,16 @@
+include mixins.pug
+
+doctype html
+html(lang="en")
+  head
+    title= `Movie Bingo - ${page.title}`
+    meta(name='viewport',content='width=device-width, initial-scale=1')
+    block styles
+      link(rel='stylesheet', href='/style.css')
+      link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Sarabun')
+    block scripts
+      script(src='/app.js')
+  body
+    include nav.pug
+    include content.pug
+    //- include includes/footer.pug

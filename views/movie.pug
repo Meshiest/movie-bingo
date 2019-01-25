@@ -1,0 +1,47 @@
+extend includes/layout.pug
+
+mixin cell()
+  div(class=`cell ${
+      attributes.selected ? 'selected' : ''
+    } ${
+      attributes.winner ? 'winner' : ''
+    }`)
+    section
+      block
+
+block content
+  +card()
+    header= movie.title
+    form.centered(method='post', action=`/movies/${movie.id}/boards/new`)
+      button(type='submit') New Board
+    .boards
+      each board in boards
+        .board
+          each cell in board.board
+            +cell()(selected=cell.selected, winner=cell.winner)
+              =cell.name
+        form.centered(method='post', action=`/movies/${movie.id}/boards/${board.id}/delete`)
+          button(type='submit') Delete Board
+
+  +card()
+    .criteria-list
+    header Criteria
+    each item in criteria
+      form.criteria-item(method='post', action=`/movies/${movie.id}/toggle/${item.id}`)
+        input.hidden(type='submit', id=`criteria-${item.id}`)
+        input(
+          disabled
+          type='checkbox'
+          checked=item.selected)
+        label(for=`criteria-${item.id}`)
+          = `${item.$loki}. ${item.name}`
+
+  +card()
+    form.centered(method='post', action=`/movies/${movie.id}/delete`)
+      .button-field
+        input(
+          type='text'
+          placeholder=`Type "delete movie" to delete`
+          required
+          pattern="delete movie")
+        button(type='submit') Delete Movie

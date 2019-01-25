@@ -1,0 +1,290 @@
+:root {
+  --bg: #eeeeee;
+  --card-bg: #ffffff;
+  --primary-fg: #ffffff;
+  --primary-light: #607d8b;
+  --primary: #546e7a;
+}
+
+body {
+  background-color: var(--bg);
+  font-family: 'Sarabun', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  align-items: center;
+  background-color: var(--primary);
+  display: flex;
+  height: 48px;
+  justify-content: space-between;
+  line-height: 1;
+  padding: 0 16px;
+}
+
+nav .title {
+  color: var(--primary-fg);
+  font-size: 30px;
+  font-weight: bold;
+}
+
+nav ul {
+  align-self: stretch;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  align-items: stretch;
+  display: flex;
+}
+
+nav ul li a {
+  align-items: center;
+  border-bottom: 2px solid var(--primary);
+  color: var(--primary-fg);
+  display: flex;
+  font-size: 16px;
+  padding: 0 8px;
+  text-decoration: none;
+  transition: all .2s ease;
+}
+
+nav a:hover, nav a:focus {
+  outline: none;
+  background-color: var(--primary-light);
+  border-bottom-color: var(--primary-light);
+}
+
+nav ul li a.selected {
+  border-bottom-color: var(--primary-fg);
+}
+
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  margin: 16px;
+  padding: 8px;
+}
+
+.content {
+  margin: auto;
+  max-width: 600px;
+  position: relative;
+  width: 100%;
+}
+
+.centered {
+  text-align: center;
+}
+
+.notice {
+  color: #444;
+  margin: 30px;
+  text-align: center;
+}
+
+.notice .icon {
+  font-size: 50px;
+  font-weight: bold;
+  margin: 8px;
+}
+
+.notice .message {
+  font-size: 20px;
+}
+
+.content a, .content a:visited {
+  color: #03a9f4;
+  text-decoration: none;
+}
+
+.content a:hover {
+  text-decoration: underline;
+}
+
+.progress-bar {
+  background-color: #cfd8dc;
+  border-radius: 4px;
+  height: 20px;
+  margin: 16px auto;
+  max-width: 400px;
+  overflow: hidden;
+  top: 2px;
+}
+
+.progress-bar .progress-fg {
+  background-color: var(--primary);
+  border-radius: 4px;
+  height: 20px;
+  max-width: 0;
+  position: relative;
+  transition: max-width .2s ease;
+}
+
+.progress-content {
+  color: var(--primary-fg);
+  font-size: 16px;
+  line-height: 1.2;
+  position: absolute;
+  right: 4px;
+  top: 0;
+}
+
+.criteria-item input {
+  display: none;
+}
+
+.criteria-item label {
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin: 4px 0;
+  padding: 2px 4px;
+  transition: all .2s ease;
+}
+
+.criteria-item label:hover, .criteria-list-item:hover {
+  background-color: #eceff1;
+  margin-left: 16px;
+}
+
+.criteria-item input:checked + label {
+  background-color: #cfd8dc;
+  margin-left: 16px;
+}
+
+header {
+  font-size: 30px;
+  text-align: center;
+}
+
+header.sub {
+  font-size: 20px;
+}
+
+input[type='text'], .button, button {
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  height: 32px;
+  padding: 4px;
+}
+
+.button, button {
+  min-width: 50px;
+  padding: 4px 8px;
+}
+
+input[type='text'] {
+  border: 1px solid #ccc;
+}
+
+input[type='text']:focus {
+  outline: none;
+  box-shadow: 0 0 4px var(--primary) inset;
+}
+
+.hidden {
+  display: none;
+}
+
+button, .button {
+  background-color: var(--primary);
+  border: none;
+  color: var(--primary-fg);
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+button:hover, .button:hover, button:focus, .button:focus {
+  outline: none;
+  background-color: var(--primary-light);
+}
+
+button:disabled, form:invalid button {
+  background-color: var(--primary);
+  opacity: 0.5;
+}
+
+.button-field {
+  display: flex;
+  margin: 16px auto;
+  max-width: 400px;
+}
+
+.button-field input[type='text'] {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  flex: 1;
+}
+
+.button-field button {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.boards {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+}
+
+.board {
+  columns: 5;
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 20px;
+  margin: 8px;
+  position: relative;
+}
+
+.board .cell {
+  min-width: 20%;
+  padding-top: 20%;
+  position: relative;
+}
+
+.cell section {
+  align-items: center;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: flex;
+  height: 80%;
+  justify-content: center;
+  left: 10%;
+  position: absolute;
+  text-align: center;
+  top: 10%;
+  width: 80%;
+}
+
+.board .selected section {
+  background-color: #eceff1;
+}
+
+.board .winner section {
+  border: 10px solid #dcedc8;
+  height: 90%;
+  left: 5%;
+  top: 5%;
+  width: 90%;
+}
+
+.criteria-list-item {
+  align-items: center;
+  display: flex;
+  margin-top: 8px;
+  border-radius: 4px;
+  transition: all .2s ease;
+}
+
+.criteria {
+  padding: 2px 4px;
+  flex: 1;
+}
