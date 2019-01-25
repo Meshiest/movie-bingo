@@ -21,7 +21,7 @@ block content
 
   +card()
     header= `Criteria (${criteria.length})`
-    each item in criteria
+    each item in criteria.reverse()
       .criteria-list
         form.criteria-list-item(method='post', action=`/criteria/${item.id}/delete`)
           .criteria= item.name
