@@ -9,3 +9,8 @@ function selectCriteria(event) {
   $('#submit').disabled = numChecked !== 24;
   $('#progressBar').style.maxWidth = numChecked / .24 + '%';
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  Array.from(document.querySelectorAll('[name="criteria[]"]'))
+    .forEach(e => e.addEventListener('change', event => selectCriteria(event)));
+});
