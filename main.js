@@ -56,13 +56,13 @@ function calcBingo(id) {
       }
     }
     for(let j = 0; j < 5; j++) {
-      const row = _.range(5).map(i => board[0][i]);
+      const row = _.range(5).map(i => board[j][i]);
       if(row.every(c => c.selected)) {
         for (const c of row) {
           c.winner = true;
         }
       }
-      const col = _.range(5).map(i => board[i][0]);
+      const col = _.range(5).map(i => board[i][j]);
       if(col.every(c => c.selected)) {
         for (const c of col) {
           c.winner = true;
